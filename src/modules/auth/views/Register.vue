@@ -2,7 +2,7 @@
     <!-- component -->
     <!-- This is an example component -->
     <div class="font-sans">
-        <div class="relative min-h-screen flex flex-col sm:justify-center items-center bg-gray-900">
+        <div class="relative min-h-screen flex flex-col sm:justify-center items-center bg-dark">
             <div class="relative sm:max-w-sm w-full">
                 <div class="card bg-blue-700 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
                 <div class="card bg-fuchsia-600 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6">
