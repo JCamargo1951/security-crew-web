@@ -1,3 +1,4 @@
+import NotFound404 from '@/common/views/NotFound404.vue';
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -34,6 +35,11 @@ const router = createRouter({
         },
       ],
     },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: NotFound404
+    }
   ],
 });
 
