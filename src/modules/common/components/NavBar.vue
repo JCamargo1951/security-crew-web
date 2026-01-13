@@ -6,12 +6,10 @@
                 <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
             </a>
             <div class="flex items-center lg:order-2">
-                <RouterLink :to="{ name: 'login' }" exact-active-class="text-blue-500"
-                    class="block py-2 pr-4 pl-3">
+                <RouterLink :to="{ name: 'login' }" exact-active-class="text-blue-500" class="block py-2 pr-4 pl-3">
                     Log in
                 </RouterLink>
-                <RouterLink :to="{ name: 'register' }" exact-active-class="text-blue-500"
-                    class="block py-2 pr-4 pl-3">
+                <RouterLink :to="{ name: 'register' }" exact-active-class="text-blue-500" class="block py-2 pr-4 pl-3">
                     Registrate
                 </RouterLink>
                 <button data-collapse-toggle="mobile-menu-2" type="button"
@@ -37,9 +35,7 @@
                         <RouterLink :to="{
                             name: link.route,
                             params: link.param
-                        }"  
-                            exact-active-class="text-blue-500"
-                            class="block py-2 pr-4 pl-3">
+                        }" exact-active-class="text-blue-500" class="block py-2 pr-4 pl-3">
                             {{ link.label }}
                         </RouterLink>
                     </li>
@@ -61,7 +57,7 @@ const links: Link[] = [
         label: 'Inicio', route: 'home'
     },
     {
-        label: 'Sobre Mi', route: 'login'
+        label: 'Mis Links', route: 'links.dashboard'
     },
 ];
 </script>

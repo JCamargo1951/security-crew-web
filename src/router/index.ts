@@ -1,4 +1,5 @@
 import NotFound404 from '@/modules/common/views/NotFound404.vue';
+import linksRoutes from '@/modules/links/routes';
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -26,20 +27,22 @@ const router = createRouter({
         {
           path: '/login',
           name: 'login',
-          component: () => import('../modules/auth/views/Login.vue'),
+          component: () => import('../modules/auth/views/LoginView.vue'),
         },
         {
           path: '/register',
           name: 'register',
-          component: () => import('../modules/auth/views/Register.vue'),
+          component: () => import('../modules/auth/views/RegisterView.vue'),
         },
       ],
     },
+    
     {
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
       component: NotFound404
-    }
+    },
+    linksRoutes,
   ],
 });
 

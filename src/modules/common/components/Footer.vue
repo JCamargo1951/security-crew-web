@@ -1,23 +1,38 @@
 <template>
-        <div class="max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
-        <h4 class="text-center font-bold">Otros Proyectos</h4>
-        <nav class="flex flex-wrap justify-center -mx-5 -my-2">
-            <div class="px-5 py-2">
-                <a href="#" class="text-base leading-6 text-blue-400 hover:text-blue-500">
-                    Happy Chat
-                </a>
-            </div>
-        </nav>
-        <div class="flex justify-center mt-8 space-x-6">
-            <a href="#" class="text-gray-400 hover:text-blue-50">
-                <span class="sr-only">GitHub</span>
-                <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
-                </svg>
-            </a>
-        </div>
-        <p class="mt-8 text-base leading-6 text-center text-gray-400">
-            By JCamargo1951.
-        </p>
+  <footer class="max-w-screen-xl mx-auto px-4 py-3">
+    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-400">
+      
+      <span class="font-semibold text-gray-300">
+        Otros proyectos
+      </span>
+
+      <a
+        href="#"
+        class="text-blue-400 hover:text-blue-500 transition"
+      >
+        Happy Chat
+      </a>
+
+      <span>|</span>
+
+      <a
+        href="https://github.com/JCamargo1951"
+        target="_blank"
+        rel="noopener"
+        class="flex items-center gap-2 hover:text-gray-200 transition"
+      >
+        <svg
+          class="w-4 h-4 fill-current"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.1 3.29 9.42 7.86 10.95.58.1.79-.25.79-.56v-2.1c-3.2.7-3.87-1.54-3.87-1.54-.52-1.34-1.27-1.7-1.27-1.7-1.04-.72.08-.71.08-.71 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.25 3.33.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.02 11.02 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.73.81 1.17 1.84 1.17 3.1 0 4.43-2.69 5.41-5.25 5.7.41.35.78 1.04.78 2.1v3.11c0 .31.21.67.8.56a11.52 11.52 0 0 0 7.85-10.95C23.5 5.74 18.27.5 12 .5z"
+          />
+        </svg>
+        JCamargo1951
+      </a>
+
     </div>
+  </footer>
 </template>
