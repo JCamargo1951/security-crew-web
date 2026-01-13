@@ -6,12 +6,10 @@
                 <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
             </a>
             <div class="flex items-center lg:order-2">
-                <RouterLink :to="{ name: 'login'}"
-                    class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
+                <RouterLink :to="{ name: 'login' }" exact-active-class="text-blue-500" class="block py-2 pr-4 pl-3">
                     Log in
                 </RouterLink>
-                <RouterLink :to="{ name: 'register'}"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                <RouterLink :to="{ name: 'register' }" exact-active-class="text-blue-500" class="block py-2 pr-4 pl-3">
                     Registrate
                 </RouterLink>
                 <button data-collapse-toggle="mobile-menu-2" type="button"
@@ -34,8 +32,10 @@
             <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
                 <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                     <li v-for="link in links" :key="link.label">
-                        <RouterLink :to="{ name: link.route }"
-                            class="block py-2 pr-4 pl-3 text-white rounded bg-blue-700 lg:bg-transparent lg:text-blue-700 lg:p-0 dark:text-white">
+                        <RouterLink :to="{
+                            name: link.route,
+                            params: link.param
+                        }" exact-active-class="text-blue-500" class="block py-2 pr-4 pl-3">
                             {{ link.label }}
                         </RouterLink>
                     </li>
@@ -48,16 +48,16 @@
 <script setup lang="ts">
 interface Link {
     label: string,
-    selected?: boolean,
     route?: string
+    param?: Record<string, string | number>;
 }
 
 const links: Link[] = [
     {
-        label: 'Inicio', selected: true, route: 'landing'
+        label: 'Inicio', route: 'home'
     },
     {
-        label: 'Sobre Mi', selected: false, route: 'login'
+        label: 'Mis Links', route: 'links.dashboard'
     },
 ];
 </script>
