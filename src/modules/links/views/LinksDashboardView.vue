@@ -1,10 +1,10 @@
 <template>
-    <section class="container px-4 mx-auto m-15">
-        <LinksHeader></LinksHeader>
-        <LinksToolbar></LinksToolbar>
-        <LinksTable></LinksTable>
-        <LinksPagination></LinksPagination>
-    </section>
+  <section class="container px-4 mx-auto m-15">
+    <LinksHeader></LinksHeader>
+    <LinksToolbar></LinksToolbar>
+    <LinksTable></LinksTable>
+    <LinksPagination></LinksPagination>
+  </section>
 </template>
 
 <script setup lang="ts">
