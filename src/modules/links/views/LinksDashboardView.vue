@@ -1,19 +1,37 @@
 <template>
   <section class="container px-4 mx-auto m-15">
     <LinksHeader></LinksHeader>
-    <LinksToolbar></LinksToolbar>
-    <LinksTable :links="links"></LinksTable>
+    <LinksFilters></LinksFilters>
+    <LinksTable :links="filtersLinks"></LinksTable>
     <LinksPagination></LinksPagination>
   </section>
 </template>
 
 <script setup lang="ts">
 import LinksHeader from '../components/dashboard/LinksToolbar.vue';
-import LinksToolbar from '../components/dashboard/LinksFilters.vue';
+import LinksFilters from '../components/dashboard/LinksFilters.vue';
 import LinksTable from '../components/dashboard/LinksTable.vue';
 import LinksPagination from '../components/dashboard/LinksPagination.vue';
 import type { Link } from '../interfaces';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+
+const filterBy = ref('all');
+
+const filtersLinks = computed(() => {
+  if(!filterBy.value.trim()) return null;
+  
+  if(filterBy.value === 'private' || filterBy.value === 'public' || filterBy.value === 'all'){
+    return filters[filterBy.value]();
+  }
+
+  return null;
+})
+
+const filters = {
+  'all': () => links.value,
+  'public': () => links.value.filter(link => link.visibility === 'Publico' ),
+  'private': () => links.value.filter(link => link.visibility === 'Privado' ),
+};
 
 const links = ref<Link[]>([
   {
@@ -30,7 +48,7 @@ const links = ref<Link[]>([
     title: 'Facebook',
     url: 'https://www.facebook.com/?locale=es_LA',
     shortener_url: 'http://127.0.0.1:5173/aAe32R',
-    visibility: 'Privada',
+    visibility: 'Privado',
     password: 'c234ybhsdf534534bnsdvbdsh534534dfgdfg',
     expires_at: '2026-04-01 11:18:16',
   },
@@ -41,14 +59,14 @@ const links = ref<Link[]>([
     shortener_url: 'http://127.0.0.1:5173/aDe34R',
     visibility: 'Publico',
     password: null,
-    expires_at: null,
+    expires_at: '2026-29-01 11:18:16',
   },
   {
     id: 4,
     title: 'Mi Insta',
     url: 'https://www.instagram.com/camargo.v1/',
     shortener_url: 'http://127.0.0.1:5173/a645s4R',
-    visibility: 'Privada',
+    visibility: 'Privado',
     password: null,
     expires_at: null,
   },
