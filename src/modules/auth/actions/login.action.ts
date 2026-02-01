@@ -1,14 +1,29 @@
 import api, { getCsrfCookie } from "@/axios";
+import type { AuthResponse, User } from "../interfaces";
+import { isAxiosError } from "axios";
 
-export const loginAction = async (email: string, password: string) => {
+export const loginAction = async (email: string, password: string) : Promise<{ok: boolean, user?: User | null, message?: string}> => {
     try {
         await getCsrfCookie();
-        const response = await api.post('/login', {
+        const { data } = await api.post<AuthResponse>('/login', {
             email,
             password
         });
-        return response.data;
+
+        return {
+            ok: true,
+            user: data.user,
+            message: "Inicio de sesión exitoso",
+        };
     } catch (error) {
-        throw error; 
+        if (isAxiosError(error) && error.response?.status) {
+            return {
+                ok: false,
+                user: null,
+                message: "Credenciales inválidas",
+            };
+        }
+        console.error({ error });
+        throw new Error("Error en el servidor, intente más tarde.");
     }
 };

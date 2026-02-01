@@ -11,7 +11,7 @@
                         <div class="w-11"></div>
 
                         <label class="text-sm text-gray-700 font-semibold">
-                            Login
+                            Welcome Back
                         </label>
 
                         <RouterLink :to="{ name: 'landing' }">
@@ -26,45 +26,26 @@
                         </RouterLink>
                     </div>
 
-                    <form method="#" action="#" class="mt-10">
+                    <form @submit.prevent="onLogin" class="mt-10">
 
                         <div>
-                            <input type="email" placeholder="Correo electronico"
+                            <input v-model="email" type="email" placeholder="Correo electronico" ref="inputEmail"
                                 class="text-black px-3 mt-1 block w-full border-none bg-white h-11 rounded-xl shadow-lg hover:bg-gray-100 focus:bg-gray-200 focus:ring-0">
                         </div>
 
                         <div class="mt-7">
-                            <input type="password" placeholder="Contraseña"
+                            <input v-model="password" type="password" placeholder="Contraseña" ref="inputPassword"
                                 class="text-black px-3  mt-1 block w-full border-none bg-white h-11 rounded-xl shadow-lg hover:bg-gray-100 focus:bg-gray-200 focus:ring-0">
                         </div>
 
                         <div class="mt-7">
                             <button
-                                class="font-bold bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
+                                submit
+                                class="cursor-pointer font-bold bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
                                 Login
                             </button>
                         </div>
-
-                        <div class="flex mt-7 items-center text-center">
-                            <hr class="border-gray-300 border-1 w-full rounded-md">
-                            <label class="block font-medium text-sm text-gray-600 w-full">
-                                Accede con
-                            </label>
-                            <hr class="border-gray-300 border-1 w-full rounded-md">
-                        </div>
-
-                        <div class="flex mt-7 justify-center w-full">
-                            <button
-                                class="mr-5 bg-blue-500 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
-                                Facebook
-                            </button>
-                            <button
-                                class="bg-red-500 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
-                                Google
-                            </button>
-
-                        </div>
-
+                        
                         <div class="mt-7">
                             <div class="flex justify-center items-center">
                                 <label class="mr-2 font-black text-black">¿Eres nuevo?</label>
@@ -84,5 +65,28 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '../stores/auth.store';
 
+const router = useRouter();
+const authStore = useAuthStore();
+
+onMounted(() => inputEmail.value?.focus())
+
+const { login, loading, isAuthenticated, isPending, error} = authStore;
+
+const email = ref('');
+const password = ref('');
+
+const inputEmail = ref<HTMLInputElement | null>(null);
+const inputPassword = ref<HTMLInputElement | null>(null);
+
+const onLogin = async () => {
+    if (!email || !password) {
+        
+    }
+    const res = await login(email.value, password.value)
+    console.log({res});
+}
 </script>
