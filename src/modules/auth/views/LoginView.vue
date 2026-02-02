@@ -70,6 +70,7 @@
 
             <div class="mt-7">
               <button
+                :disabled="loading"
                 type="submit"
                 class="cursor-pointer font-bold bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
               >
@@ -99,11 +100,14 @@
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../stores/auth.store';
+import { storeToRefs } from 'pinia';
 
 const router = useRouter();
 const authStore = useAuthStore();
 
-const { login, loading, isAuthenticated, isPending, error } = authStore;
+const { login } = authStore;
+
+const { loading, isAuthenticated, isPending, error, user } = storeToRefs(authStore);
 
 const email = ref('');
 const password = ref('');
@@ -130,7 +134,10 @@ const onLogin = async () => {
     return;
   }
 
-  const res = await login(email.value, password.value);
-  console.log({ res });
+  await login(email.value, password.value);
+
+  if (isAuthenticated.value) {
+    router.replace({name: 'home'})
+  }
 };
 </script>

@@ -9,25 +9,21 @@ export const useAuthStore = defineStore('auth', () => {
     const error = ref<string | null>(null);
     const authStatus = ref<AuthStatus>(AuthStatus.PENDING);
 
-    const login = async (email: string, password: string) => {
+    const login = async (email: string, password: string) : Promise<boolean> => {
         loading.value = true;
         error.value = null;
 
         try {
-            const loginResponse = await loginAction(email, password);
-
-            if (!loginResponse.ok) {
-                error.value = loginResponse.message || 'Login failed';
+            const data = await loginAction(email, password);
+            if(!data.ok){
                 authStatus.value = AuthStatus.UNAUTHENTICATED;
+                error.value = data.message || null;
                 return false;
             }
-
-            user.value = loginResponse.user || null;
+            user.value = data.user || null;
             authStatus.value = AuthStatus.AUTHENTICATED;
             return true;
-
         } catch (err) {
-            // console.error({ err });
             user.value = null;
             authStatus.value = AuthStatus.UNAUTHENTICATED;
             return false;
@@ -44,7 +40,7 @@ export const useAuthStore = defineStore('auth', () => {
         // Getters
         isPending: computed(() => authStatus.value === AuthStatus.PENDING),
         isAuthenticated: computed(() => authStatus.value === AuthStatus.AUTHENTICATED),
-        username: computed(() => user.value?.name || ''),
+        name: computed(() => user.value?.name || ''),
         email: computed(() => user.value?.email || ''),
 
         // Actions

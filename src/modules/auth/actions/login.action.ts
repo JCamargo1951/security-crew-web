@@ -1,29 +1,43 @@
-import api, { getCsrfCookie } from "@/axios";
-import type { AuthResponse, User } from "../interfaces";
+import { authSession, getCsrfCookie } from "@/axios";
+import type { User } from "../interfaces";
 import { isAxiosError } from "axios";
+import unwrap from "@/modules/common/helpers/unwrap.helper";
+import { getUserAction } from "./get-user.action";
 
-export const loginAction = async (email: string, password: string) : Promise<{ok: boolean, user?: User | null, message?: string}> => {
+export const loginAction = async (email: string, password: string): Promise<{ ok: boolean, user?: User | null, message?: string }> => {
     try {
         await getCsrfCookie();
-        const { data } = await api.post<AuthResponse>('/login', {
+
+        await unwrap(authSession.post('/login', {
             email,
             password
-        });
+        }));
+
+        const user = await getUserAction();
 
         return {
             ok: true,
-            user: data.user,
+            user: user,
             message: "Inicio de sesión exitoso",
         };
     } catch (error) {
         if (isAxiosError(error) && error.response?.status) {
-            return {
-                ok: false,
-                user: null,
-                message: "Credenciales inválidas",
-            };
+
+            if (isAxiosError(error) && error.response?.status === 422) {
+                return {
+                    ok: false,
+                    message: "Credenciales inválidas",
+                };
+            }
+
+            if (isAxiosError(error) && error.response?.status === 401) {
+                return {
+                    ok: false,
+                    message: "No autenticado",
+                };
+            }
         }
-        console.error({ error });
-        throw new Error("Error en el servidor, intente más tarde." + {error});
+
+        throw new Error("SERVER ERROR");
     }
 };

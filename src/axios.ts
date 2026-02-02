@@ -1,7 +1,7 @@
 import axios, { AxiosError, type InternalAxiosRequestConfig } from "axios";
 
 const api = axios.create({
-  baseURL: "http://127.0.0.1:8000", 
+  baseURL: "http://localhost:8000/api/v1", 
   withCredentials: true,            
   withXSRFToken: true,           
   headers: {
@@ -10,10 +10,19 @@ const api = axios.create({
   },
 });
 
+export const authSession = axios.create({
+  baseURL: "http://localhost:8000", 
+  withCredentials: true,            
+  withXSRFToken: true,           
+  headers: {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+  },
+});
 /**
  * Obtener cookie CSRF de Laravel Sanctum
  */
-export const getCsrfCookie = () => api.get("/sanctum/csrf-cookie");
+export const getCsrfCookie = () => authSession.get("/sanctum/csrf-cookie");
 
 
 /**
