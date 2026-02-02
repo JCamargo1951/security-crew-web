@@ -27,7 +27,7 @@ export const useAuthStore = defineStore('auth', () => {
             return true;
 
         } catch (err) {
-            console.error({ err });
+            // console.error({ err });
             user.value = null;
             authStatus.value = AuthStatus.UNAUTHENTICATED;
             return false;

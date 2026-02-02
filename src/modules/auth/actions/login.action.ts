@@ -24,6 +24,6 @@ export const loginAction = async (email: string, password: string) : Promise<{ok
             };
         }
         console.error({ error });
-        throw new Error("Error en el servidor, intente más tarde.");
+        throw new Error("Error en el servidor, intente más tarde." + {error});
     }
 };
