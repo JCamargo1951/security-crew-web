@@ -6,7 +6,7 @@ import type { ApiResponse } from "../../common/interfaces";
 
 export const getUserAction = async (): Promise<User> => {
   try {
-    return unwrap(
+    return await unwrap(
       api.get<ApiResponse<User>>("/user")
     );
   } catch (error) {
