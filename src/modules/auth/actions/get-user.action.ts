@@ -13,7 +13,6 @@ export const getUserAction = async (): Promise<User> => {
     if (isAxiosError(error) && error.response?.status === 401) {
       throw new Error("UNAUTHENTICATED");
     }
-    console.log({error});
     throw new Error("SERVER ERROR");
   }
 };
