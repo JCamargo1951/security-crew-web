@@ -107,7 +107,7 @@ const authStore = useAuthStore();
 
 const { login } = authStore;
 
-const { loading, isAuthenticated, isPending, error, user } = storeToRefs(authStore);
+const { loading, isAuthenticated, isPending, user } = storeToRefs(authStore);
 
 const email = ref('');
 const password = ref('');
@@ -134,10 +134,10 @@ const onLogin = async () => {
     return;
   }
 
-  await login(email.value, password.value);
+  const data = await login(email.value, password.value);
 
   if (isAuthenticated.value) {
-    router.replace({name: 'home'})
+    router.replace({name: 'links.dashboard'})
   }
 };
 </script>
