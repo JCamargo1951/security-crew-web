@@ -83,11 +83,13 @@ import { storeToRefs } from 'pinia';
 import { useAuthStore } from '../stores/auth.store';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useToast } from 'vue-toastification';
 
 const authStore = useAuthStore();
 const router = useRouter();
+const toast = useToast();
 
-const { register, login } = authStore;
+const { register } = authStore;
 
 const { loading, isAuthenticated, user } = storeToRefs(authStore);
 
@@ -98,10 +100,17 @@ const passwordConfirmation = ref('');
 
 const onRegister = async () => {
   const data = await register(name.value, email.value, password.value, password.value);
-
-  if(isAuthenticated.value){
-     router.replace({name: 'home'})
+  console.log(data);
+  if (!data.ok) {
+    if (data?.errors) {
+      Object.values(data.errors).forEach((messages) => {
+        toast.error(messages[0], { timeout: 2000 });
+      });
+    }
   }
- 
+
+  if (isAuthenticated.value) {
+    router.replace({ name: 'home' });
+  }
 };
 </script>

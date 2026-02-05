@@ -101,9 +101,11 @@ import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../stores/auth.store';
 import { storeToRefs } from 'pinia';
+import { useToast } from 'vue-toastification';
 
 const router = useRouter();
 const authStore = useAuthStore();
+const toast = useToast();
 
 const { login } = authStore;
 
@@ -136,8 +138,14 @@ const onLogin = async () => {
 
   const data = await login(email.value, password.value);
 
+  if (!data.ok) {
+    toast.error(data.message, {
+      timeout: 2000,
+    });
+  }
+
   if (isAuthenticated.value) {
-    router.replace({name: 'links.dashboard'})
+    router.replace({ name: 'links.dashboard' });
   }
 };
 </script>

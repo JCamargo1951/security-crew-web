@@ -23,19 +23,18 @@ export const registerAction = async (name: string, email: string, password: stri
             user: user,
         };
     } catch (error) {
-        console.log(error);
         if (isAxiosError(error) && error.response?.status === 422) {
-            console.log(error.response.data);
+            console.log(error.response)
             return {
                 ok: false,
                 errors: error.response.data.errors,
-                message: error.response.data.error
+                message: error.response.data.message
             }
         }
         if (isAxiosError(error) && error.response?.status === 400) {
             return {
                 ok: false,
-                message: error.response.data.error,
+                message: error.response.data.message,
             }
         }
         throw new Error('SERVER ERROR');
