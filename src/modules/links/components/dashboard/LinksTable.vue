@@ -46,7 +46,6 @@ const headers: Header[] = [
 ];
 
 
-const links = ref<Link[]>(props.links);
 const sortKey = ref<SortableLinkKey>('title');
 const sortDirection = ref<'asc' | 'desc'>('asc');
 
@@ -60,7 +59,7 @@ function onFilterChange(key: SortableLinkKey) {
 }
 
 const sortedLinks = computed<Link[]>(() => {
-  return [...links.value].sort((a, b) => {
+  return [...props.links].sort((a, b) => {
     const aValue = a[sortKey.value];
     const bValue = b[sortKey.value];
 

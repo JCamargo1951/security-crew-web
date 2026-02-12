@@ -1,5 +1,5 @@
 import { getCsrfCookie, spa } from "@/axios";
-import unwrap from "@/modules/common/helpers/unwrap.helper";
+import unwrap from "@/modules/common/helpers/unwrap-data.helper";
 
 export const logoutAction = async (): Promise<{ ok: boolean }> => {
     try {

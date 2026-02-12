@@ -1,4 +1,3 @@
-// src/modules/links/routes.ts
 import type { RouteRecordRaw } from 'vue-router'
 
 const linksRoutes: RouteRecordRaw = {

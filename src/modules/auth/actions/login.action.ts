@@ -1,7 +1,7 @@
 import { getCsrfCookie, spa } from "@/axios";
 import type { User } from "../interfaces";
 import { isAxiosError } from "axios";
-import unwrap from "@/modules/common/helpers/unwrap.helper";
+import unwrap from "@/modules/common/helpers/unwrap-data.helper";
 import { getUserAction } from "./get-user.action";
 
 export const loginAction = async (email: string, password: string): Promise<{ ok: boolean, user?: User | null, message?: string }> => {
@@ -15,7 +15,7 @@ export const loginAction = async (email: string, password: string): Promise<{ ok
         }));
 
         const user = await getUserAction();
-        
+
         return {
             ok: true,
             user: user,

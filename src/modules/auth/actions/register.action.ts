@@ -1,10 +1,10 @@
 import { getCsrfCookie, spa } from "@/axios";
-import unwrap from "@/modules/common/helpers/unwrap.helper";
+import unwrap from "@/modules/common/helpers/unwrap-data.helper";
 import { isAxiosError } from "axios";
 import { getUserAction } from "./get-user.action";
 import type { User } from "../interfaces";
 
-export const registerAction = async (name: string, email: string, password: string, passwordConfirmation: string): Promise<{ ok: boolean, errors?: Record<string, string[]>, message?: string, user?: User | null}> => {
+export const registerAction = async (name: string, email: string, password: string, passwordConfirmation: string): Promise<{ ok: boolean, errors?: Record<string, string[]>, message?: string, user?: User | null }> => {
     try {
         await getCsrfCookie();
 
