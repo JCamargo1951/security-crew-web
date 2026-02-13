@@ -1,1 +1,1 @@
-export type SortableLinkKey = 'title' | 'url' | 'shortener_url' | 'visibility';
+export type FilterKey =  'all' | 'public' | 'private';

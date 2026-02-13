@@ -16,6 +16,7 @@ import LinksPagination from '../components/dashboard/LinksPagination.vue';
 import { computed, onMounted, ref, toRefs } from 'vue';
 import { useLinks } from '../composables/use-links';
 import type { Link } from '../interfaces';
+import type { FilterKey } from '../types';
 
 const { error, loading, links, message, fetchLinks } = useLinks();
 
@@ -23,7 +24,6 @@ onMounted(() => {
   fetchLinks();
 });
 
-type FilterKey = 'all' | 'public' | 'private';
 
 const filterBy = ref<FilterKey>('all');
 

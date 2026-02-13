@@ -15,8 +15,8 @@
 
 <script setup lang="ts">
 import SorterIcon from '@/modules/common/icons/SorterIcon.vue';
-import type { SortableLinkKey } from '../../types/sorteable-link-key.type';
 import type { NonSortableHeader, SortableHeader } from '../../interfaces';
+import type { SortableLinkKey } from '../../types';
 
 type Header = SortableHeader | NonSortableHeader;
 
