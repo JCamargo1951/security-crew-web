@@ -27,7 +27,7 @@ import { computed, ref } from 'vue';
 import type { Link, NonSortableHeader, SortableHeader } from '../../interfaces';
 import LinksHeader from './LinksHeader.vue';
 import LinksRow from './LinksRow.vue';
-import type { SortableLinkKey } from '../../types/sorteable-link-key.type';
+import type { SortableLinkKey } from '../../types';
 
 type Header = SortableHeader | NonSortableHeader;
 

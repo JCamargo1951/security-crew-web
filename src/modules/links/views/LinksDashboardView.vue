@@ -2,7 +2,7 @@
   <section class="container px-4 mx-auto m-15">
     <p>Total links: {{ links.length }}</p>
     <LinksHeader></LinksHeader>
-    <LinksFilters></LinksFilters>
+    <LinksFilters v-model="filterBy"></LinksFilters>
     <LinksTable :links="filteredLinks"></LinksTable>
     <LinksPagination></LinksPagination>
   </section>
@@ -13,7 +13,7 @@ import LinksHeader from '../components/dashboard/LinksToolbar.vue';
 import LinksFilters from '../components/dashboard/LinksFilters.vue';
 import LinksTable from '../components/dashboard/LinksTable.vue';
 import LinksPagination from '../components/dashboard/LinksPagination.vue';
-import { computed, onMounted, ref, toRefs } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useLinks } from '../composables/use-links';
 import type { Link } from '../interfaces';
 import type { FilterKey } from '../types';
@@ -25,7 +25,7 @@ onMounted(() => {
 });
 
 
-const filterBy = ref<FilterKey>('all');
+const filterBy = defineModel<FilterKey>({ default: 'all'});
 
 const filters: Record<FilterKey, () => Link[]> = {
   all: () => links.value,
