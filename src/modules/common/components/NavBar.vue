@@ -96,11 +96,6 @@ const { loading, isAuthenticated, user } = storeToRefs(authStore);
 
 const links = computed<Link[]>(() => [
   {
-    label: 'Inicio',
-    route: 'home',
-    auth: true,
-  },
-  {
     label: 'Mis Links',
     route: 'links.dashboard',
     auth: isAuthenticated.value,

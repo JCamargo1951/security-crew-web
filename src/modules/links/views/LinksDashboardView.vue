@@ -1,6 +1,5 @@
 <template>
   <section class="container px-4 mx-auto m-15">
-    <p>Total links: {{ links.length }}</p>
     <LinksHeader></LinksHeader>
     <LinksFilters v-model="filterBy"></LinksFilters>
     <LinksTable :links="filteredLinks"></LinksTable>
