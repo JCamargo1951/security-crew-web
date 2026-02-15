@@ -35,7 +35,7 @@
           <div class="flex items-center gap-4">
             <div class="flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse shadow-[0_0_5px_#22d3ee]"></span>
-              <span class="text-[9px] text-cyan-700 uppercase">MONSTRANDO</span>
+              <span class="text-[9px] text-cyan-700 uppercase">MOSTRANDO</span>
             </div>
             <span class="text-[9px] text-gray-700">|</span>
             <span class="text-[9px] text-gray-600 uppercase">{{ sortedLinks.length }}_LINKS</span>
