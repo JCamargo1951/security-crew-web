@@ -39,7 +39,7 @@
 
       <input
         type="text"
-        placeholder="BUSCAR_EN_RED..."
+        placeholder="BUSCAR_EN_TABLA..."
         class="block w-full md:w-80 py-2 pl-10 pr-5 text-xs font-mono tracking-tighter text-cyan-400 bg-gray-900 border-b-2 border-gray-800 placeholder-gray-700 focus:outline-none focus:border-magenta-500 focus:ring-0 transition-all uppercase"
       />
       

@@ -54,7 +54,7 @@
 
           <div v-else class="flex items-center gap-4 border-l border-gray-800 pl-4">
             <div class="text-right hidden sm:block">
-              <p class="text-[10px] text-gray-500 uppercase leading-none">User_Active</p>
+              <p class="text-[10px] text-gray-500 uppercase leading-none">Usuario</p>
               <p class="text-sm font-mono text-cyan-400">{{ user?.name }}</p>
             </div>
             

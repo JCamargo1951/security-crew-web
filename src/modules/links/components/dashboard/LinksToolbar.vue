@@ -30,12 +30,12 @@
     </div>
   </div>
 
-  <Modal title=">_ESTABLECER_REGISTRO" v-model:open="isModalOpen">
+  <Modal title=">_CREAR_LINK" v-model:open="isModalOpen">
     <div class="flex flex-col gap-6 p-6 bg-black border border-cyan-500/20">
       
       <div class="w-full">
         <label class="block mb-1 text-[10px] font-mono text-cyan-500 uppercase tracking-widest"> 
-          Label_Name 
+          Nombre de Link
         </label>
         <input
           type="text"
@@ -46,7 +46,7 @@
 
       <div class="w-full">
         <label class="block mb-1 text-[10px] font-mono text-cyan-500 uppercase tracking-widest"> 
-          Target_URL 
+          URL
         </label>
         <div class="relative group">
           <span class="absolute left-3 top-3 text-magenta-500 font-mono text-sm">>></span>
@@ -57,13 +57,6 @@
           />
         </div>
       </div>
-
-      <button 
-        @click="isModalOpen = false"
-        class="w-full mt-2 bg-magenta-500 text-white font-black py-2 uppercase italic hover:bg-white hover:text-black transition-all [clip-path:polygon(0_0,100%_0,100%_100%,15%_100%,0_75%)]"
-      >
-        EJECUTAR_CARGA
-      </button>
     </div>
   </Modal>
 </template>

@@ -35,14 +35,12 @@
           <div class="flex items-center gap-4">
             <div class="flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse shadow-[0_0_5px_#22d3ee]"></span>
-              <span class="text-[9px] text-cyan-700 uppercase">System_Active</span>
+              <span class="text-[9px] text-cyan-700 uppercase">MONSTRANDO</span>
             </div>
             <span class="text-[9px] text-gray-700">|</span>
-            <span class="text-[9px] text-gray-600 uppercase">Records_Found: {{ sortedLinks.length }}</span>
+            <span class="text-[9px] text-gray-600 uppercase">{{ sortedLinks.length }}_LINKS</span>
           </div>
-          <div class="text-[9px] text-gray-700 uppercase tracking-tighter">
-            Terminal_ID: <span class="text-magenta-500/50">SEC-99-B</span>
-          </div>
+
         </div>
 
       </div>

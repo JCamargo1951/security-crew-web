@@ -2,7 +2,7 @@
   <div class="mt-6 sm:flex sm:items-center sm:justify-between px-2">
     <div class="text-xs font-mono text-gray-500 uppercase tracking-widest flex items-center gap-2">
       <span class="w-2 h-2 bg-cyan-500/50 rounded-full animate-pulse"></span>
-      SECTOR_DE_DATOS <span class="text-cyan-400 font-black px-2 border border-cyan-500/20 bg-cyan-500/5">1 // 10</span>
+      PAGINA <span class="text-cyan-400 font-black px-2 border border-cyan-500/20 bg-cyan-500/5">1 // 10</span>
     </div>
 
     <div class="flex items-center mt-4 gap-x-4 sm:mt-0">
