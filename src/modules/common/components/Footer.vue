@@ -1,11 +1,12 @@
 <template>
   <footer class="w-full bg-black border-t border-cyan-500/20 mt-12">
     <div class="max-w-screen-xl mx-auto px-4 py-6">
-      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-[10px] font-mono uppercase tracking-[0.2em]">
-        
+      <div
+        class="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-[10px] font-mono uppercase tracking-[0.2em]"
+      >
         <div class="flex items-center gap-2">
-          <span class="text-magenta-500 font-black animate-pulse">>></span>
-          <span class="text-gray-500 italic">Nodos_Relacionados:</span>
+          <span class="text-magenta-500 font-black animate-pulse">OTROS PROYECTOS >></span>
+          <span class="text-gray-500 italic">:</span>
         </div>
 
         <a
@@ -35,9 +36,7 @@
           <span class="group-hover:tracking-[0.3em] transition-all">JCamargo1951</span>
         </a>
 
-        <div class="hidden lg:block text-[8px] text-gray-700 ml-auto">
-          v1.0.42_STABLE // 2026
-        </div>
+        <div class="hidden lg:block text-[8px] text-gray-700 ml-auto">v1.0.42_STABLE // 2026</div>
       </div>
     </div>
   </footer>
@@ -45,13 +44,22 @@
 
 <style scoped>
 /* Colores de identidad */
-.text-magenta-500 { color: #ff00ff; }
-.text-cyan-400 { color: #22d3ee; }
+.text-magenta-500 {
+  color: #ff00ff;
+}
+.text-cyan-400 {
+  color: #22d3ee;
+}
 
 /* Efecto de parpadeo para los indicadores */
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 .animate-pulse {
   animation: blink 1s steps(2, start) infinite;
