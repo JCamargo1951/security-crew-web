@@ -40,14 +40,14 @@
               :to="{ name: 'login' }"
               class="text-xs font-bold uppercase tracking-widest text-magenta-500 hover:text-magenta-400 transition-colors"
             >
-              // Acceder
+              // Ingresar
             </RouterLink>
             
             <RouterLink
               :to="{ name: 'register' }"
               class="relative px-6 py-2 overflow-hidden group bg-cyan-500 text-black font-black uppercase text-xs tracking-tighter hover:bg-white transition-colors [clip-path:polygon(10%_0,100%_0,100%_70%,90%_100%,0_100%,0%_30%)]"
             >
-              <span class="relative z-10">Registrar_ID</span>
+              <span class="relative z-10">CREAR_CUENTA</span>
               <div class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
             </RouterLink>
           </div>
