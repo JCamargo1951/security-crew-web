@@ -1,4 +1,15 @@
 import axios, { AxiosError, type InternalAxiosRequestConfig } from "axios";
+import useLocalStorage from "./modules/common/composables/use-local-storage";
+import { AuthStatus } from "./modules/auth/interfaces";
+import { useRouter } from "vue-router";
+
+const { data: user, removeItem: removeUser } = useLocalStorage('auth_user', null);
+const { data: authStatus, removeItem: removeStatus } = useLocalStorage(
+    'auth_status', 
+    AuthStatus.UNAUTHENTICATED
+);
+
+const router = useRouter();
 
 const api = axios.create({
   baseURL: "http://localhost:8000/api/v1", 
@@ -40,7 +51,20 @@ api.interceptors.response.use(
     }
 
     if (error.response?.status === 401) {
-      window.location.href = "/login";
+      console.warn("Sesión expirada o no autenticado");
+      removeUser();
+      removeStatus();
+      router.replace({
+        name: 'home'
+      });
+    }
+
+    if (error.response?.status === 403) {
+      console.warn("No tienes permisos para esta acción");
+
+      // vista forbideen
+
+      return Promise.reject(error);
     }
 
     return Promise.reject(error);
@@ -57,14 +81,13 @@ api.interceptors.response.use(
 
     const status = error.response.status;
 
-    if (status === 401) {
-      console.warn("Sesión expirada o no autenticado");
-
-      // Ejemplos de acciones globales:
-      // logout()
-      // replace
-
-      return Promise.reject(error);
+    if (error.response?.status === 401) {
+        console.warn("Sesión expirada o no autenticado");
+        removeUser();
+        removeStatus();
+        router.replace({
+          name: 'home'
+        });
     }
 
     if (status === 403) {
@@ -85,25 +108,6 @@ api.interceptors.response.use(
     }
 
     // ❗ Dejamos pasar otros errores (400, 404, 422, etc.)
-    return Promise.reject(error);
-  }
-);
-
-spa.interceptors.response.use(
-  response => response,
-  async (error: AxiosError) => {
-    const originalRequest = error.config as InternalAxiosRequestConfig & { _retry?: boolean };
-
-    if (error.response?.status === 419 && !originalRequest._retry) {
-      originalRequest._retry = true;
-      await getCsrfCookie();
-      return spa(originalRequest);
-    }
-
-    if (error.response?.status === 401) {
-      window.location.href = "/login";
-    }
-
     return Promise.reject(error);
   }
 );
