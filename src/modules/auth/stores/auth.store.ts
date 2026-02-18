@@ -1,6 +1,6 @@
 import { AuthStatus, type User } from "../interfaces";
 import { computed, ref } from "vue";
-import { loginAction } from "../actions";
+import { getUserAction, loginAction } from "../actions";
 import { defineStore } from "pinia";
 import registerAction from "../actions/register.action";
 import { logoutAction } from "../actions/logout.action";
@@ -57,7 +57,7 @@ export const useAuthStore = defineStore('auth', () => {
         }
     };
 
-    const logout = async () => {
+    const logout = async (): Promise<{ ok: boolean }>  => {
         loading.value = true;
 
         try {
@@ -75,6 +75,20 @@ export const useAuthStore = defineStore('auth', () => {
         }
     }
 
+    const checkUser = async (): Promise<{ ok: boolean, user?: User }> => {
+        loading.value = true;
+        try {
+            const data = await getUserAction();
+            if (!data.ok) {
+                return { ok: false };
+            }
+            return { ok: true, user: data.user };
+        } catch (error) {
+            return { ok: false };
+        } finally {
+            loading.value = false;
+        }
+    }
 
     return {
         user,
@@ -91,5 +105,6 @@ export const useAuthStore = defineStore('auth', () => {
         login,
         register,
         logout,
+        checkUser,
     };
 });

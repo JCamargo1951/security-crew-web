@@ -4,7 +4,7 @@ import { isAxiosError } from "axios";
 import { getUserAction } from "./get-user.action";
 import type { User } from "../interfaces";
 
-export const registerAction = async (name: string, email: string, password: string, passwordConfirmation: string): Promise<{ ok: boolean, errors?: Record<string, string[]>, message?: string, user?: User | null }> => {
+export const registerAction = async (name: string, email: string, password: string, passwordConfirmation: string): Promise<{ ok: boolean, errors?: Record<string, string[]>, message?: string, user?: User }> => {
     try {
         await getCsrfCookie();
 
@@ -15,12 +15,12 @@ export const registerAction = async (name: string, email: string, password: stri
             password_confirmation: passwordConfirmation,
         }));
 
-        const user = await getUserAction();
+        const data = await getUserAction();
 
         return {
             ok: true,
             message: 'Usuario registrado',
-            user: user,
+            user: data.user,
         };
     } catch (error) {
         if (isAxiosError(error) && error.response?.status === 422) {

@@ -4,15 +4,16 @@ import type { User } from "@/modules/auth/interfaces";
 import unwrap from "../../common/helpers/unwrap-data.helper";
 import type { ApiResponse } from "../../common/interfaces";
 
-export const getUserAction = async (): Promise<User> => {
+export const getUserAction = async (): Promise<{ ok: boolean, user?: User }> => {
   try {
-    return await unwrap(
-      api.get<ApiResponse<User>>("/user")
-    );
-  } catch (error) {
-    if (isAxiosError(error) && error.response?.status === 401) {
-      throw new Error("UNAUTHENTICATED");
+    const user = await unwrap( api.get<ApiResponse<User>>("/user") );
+    return {
+      ok: true,
+      user: user
     }
-    throw new Error("SERVER ERROR");
+  } catch (error) {
+    return {
+      ok: false,
+    }
   }
 };

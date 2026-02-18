@@ -1,3 +1,4 @@
+import isNotAuthenticatedGuard from '@/modules/auth/guards/is-not-authenticated.guard';
 import NotFound404 from '@/modules/common/views/NotFound404.vue';
 import linksRoutes from '@/modules/links/routes';
 import { createRouter, createWebHistory } from 'vue-router'
@@ -21,6 +22,7 @@ const router = createRouter({
     {
       path: '/auth',
       name: 'auth',
+      beforeEnter: [isNotAuthenticatedGuard],
       redirect: { name: 'login' },
       component: () => import('../modules/auth/layouts/AuthLayout.vue'),
       children: [
