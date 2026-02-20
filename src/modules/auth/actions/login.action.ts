@@ -14,11 +14,11 @@ export const loginAction = async (email: string, password: string): Promise<{ ok
             password
         }));
 
-        const user = await getUserAction();
+        const data = await getUserAction();
 
         return {
             ok: true,
-            user: user,
+            user: data.user,
             message: "Inicio de sesión exitoso",
         };
     } catch (error) {

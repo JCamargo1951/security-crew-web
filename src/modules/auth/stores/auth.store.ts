@@ -67,6 +67,7 @@ export const useAuthStore = defineStore('auth', () => {
             }
             removeUser();
             removeStatus();
+            authStatus.value = AuthStatus.UNAUTHENTICATED;
             return { ok: true };
         } catch (error) {
             return { ok: false };
@@ -80,10 +81,16 @@ export const useAuthStore = defineStore('auth', () => {
         try {
             const data = await getUserAction();
             if (!data.ok) {
+                removeUser();
+                removeStatus();
+                authStatus.value = AuthStatus.UNAUTHENTICATED;
                 return { ok: false };
             }
             return { ok: true, user: data.user };
         } catch (error) {
+            removeUser();
+            removeStatus();
+            authStatus.value = AuthStatus.UNAUTHENTICATED;
             return { ok: false };
         } finally {
             loading.value = false;

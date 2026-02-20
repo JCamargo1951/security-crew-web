@@ -8,13 +8,15 @@ const isNotAuthenticatedGuard = async (
 ) => {
   const authStore = useAuthStore();
 
-  const { isAuthenticated } = authStore;
+  const { isAuthenticated, checkUser } = authStore;
+
+  await checkUser();
 
   if ( isAuthenticated ) {
-    return next();
+    return next({ name: 'home' });
   }
 
-  return next({ name: 'home' });
+  return next();
 };
 
 export default isNotAuthenticatedGuard;
