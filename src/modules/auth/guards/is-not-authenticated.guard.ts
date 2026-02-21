@@ -12,7 +12,7 @@ const isNotAuthenticatedGuard = async (
   const { ok } = await checkUser();
 
   if (ok) {
-    return next({ name: 'home' });
+    return next({ path: from.fullPath });
   }
   
   return next();
