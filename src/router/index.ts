@@ -38,13 +38,12 @@ const router = createRouter({
         },
       ],
     },
-    
+    linksRoutes,
     {
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
       component: NotFound404
     },
-    linksRoutes,
   ],
 });
 

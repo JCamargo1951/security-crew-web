@@ -1,15 +1,13 @@
 import axios, { AxiosError, type InternalAxiosRequestConfig } from "axios";
 import useLocalStorage from "./modules/common/composables/use-local-storage";
 import { AuthStatus } from "./modules/auth/interfaces";
-import { useRouter } from "vue-router";
+import router from "@/router";
 
 const { data: user, removeItem: removeUser } = useLocalStorage('auth_user', null);
 const { data: authStatus, removeItem: removeStatus } = useLocalStorage(
     'auth_status', 
     AuthStatus.UNAUTHENTICATED
 );
-
-const router = useRouter();
 
 const api = axios.create({
   baseURL: "http://localhost:8000/api/v1", 
@@ -54,9 +52,7 @@ api.interceptors.response.use(
       console.warn("Sesión expirada o no autenticado");
       removeUser();
       removeStatus();
-      router.replace({
-        name: 'home'
-      });
+      router.replace({ name: 'home' });
     }
 
     if (error.response?.status === 403) {
@@ -73,7 +69,7 @@ api.interceptors.response.use(
 
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
+  (error) => {    
     if (!error.response) {
       console.error("Error de red o servidor caído");
       return Promise.reject(error);
@@ -85,9 +81,7 @@ api.interceptors.response.use(
         console.warn("Sesión expirada o no autenticado");
         removeUser();
         removeStatus();
-        router.replace({
-          name: 'home'
-        });
+        router.replace({ name: 'home' });
     }
 
     if (status === 403) {

@@ -5,6 +5,7 @@ import { defineStore } from "pinia";
 import registerAction from "../actions/register.action";
 import { logoutAction } from "../actions/logout.action";
 import useLocalStorage from "@/modules/common/composables/use-local-storage";
+import checkUserAction from "../actions/check-user.action";
 
 export const useAuthStore = defineStore('auth', () => {
     const { data: user, removeItem: removeUser } = useLocalStorage('auth_user', null);
@@ -79,14 +80,15 @@ export const useAuthStore = defineStore('auth', () => {
     const checkUser = async (): Promise<{ ok: boolean, user?: User }> => {
         loading.value = true;
         try {
-            const data = await getUserAction();
+            const data = await checkUserAction();
             if (!data.ok) {
                 removeUser();
                 removeStatus();
                 authStatus.value = AuthStatus.UNAUTHENTICATED;
                 return { ok: false };
             }
-            return { ok: true, user: data.user };
+            user.value = data.user;
+            return { ok: true };
         } catch (error) {
             removeUser();
             removeStatus();
