@@ -8,10 +8,10 @@ const isNotAuthenticatedGuard = async (
 ) => {
   const authStore = useAuthStore();
 
-  const { isAuthenticated, checkUser, loading } = authStore;
-  const data = await checkUser();
+  const { checkUser } = authStore;
+  const { ok } = await checkUser();
 
-  if (isAuthenticated && data.ok) {
+  if (ok) {
     return next({ name: 'home' });
   }
   
