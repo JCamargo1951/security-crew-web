@@ -1,6 +1,8 @@
 import { ref } from "vue";
 import type { Link } from "../interfaces";
 import { getLinks } from "../actions";
+import type { User } from "@/modules/auth/interfaces";
+import createLinkAction from "../actions/create-link.action";
 
 export function useLinks() {
     const links = ref<Link[]>([]);
@@ -26,6 +28,24 @@ export function useLinks() {
         }
     };
 
+    const createLink = async (link: Link, user: User) => {
+        try {
+            loading.value = true;
+            const data = await createLinkAction(link, user.id);
+            if (!data.ok) {
+                message.value = data.error ?? '';
+                return;
+            }
+            links.value.push(data.link!);
+            message.value = 'Link creado exitosamente';
+        } catch (e) {
+            message.value = 'Error de servidor';
+            error.value = 'Error de servidor';
+        } finally {
+            loading.value = false;
+        }
+    }
+
     return {
         links,
         message,
@@ -34,5 +54,6 @@ export function useLinks() {
 
         //Actions
         fetchLinks,
+        createLink,
     }
 }

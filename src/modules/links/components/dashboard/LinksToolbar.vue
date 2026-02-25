@@ -30,53 +30,14 @@
     </div>
   </div>
 
-  <Modal title=">_CREAR_LINK" v-model:open="isModalOpen">
-    <div class="flex flex-col gap-6 p-6 bg-black border border-cyan-500/20">
-      
-      <div class="w-full">
-        <label class="block mb-1 text-[10px] font-mono text-cyan-500 uppercase tracking-widest"> 
-          Nombre de Link
-        </label>
-        <input
-          type="text"
-          class="w-full bg-gray-900/40 text-cyan-400 font-mono text-sm border-b-2 border-gray-800 focus:border-magenta-500 focus:outline-none px-3 py-3 transition-all placeholder:text-gray-700"
-          placeholder="Nombre"
-        />
-      </div>
+  <CreateLinkModal v-model:open="isModalOpen" />
 
-      <div class="w-full">
-        <label class="block mb-1 text-[10px] font-mono text-cyan-500 uppercase tracking-widest"> 
-          URL
-        </label>
-        <div class="relative group">
-          <span class="absolute left-3 top-3 text-magenta-500 font-mono text-sm">>></span>
-          <input
-            type="text"
-            class="w-full bg-gray-900/40 text-cyan-400 font-mono text-sm border-b-2 border-gray-800 focus:border-magenta-500 focus:outline-none pl-10 pr-3 py-3 transition-all placeholder:text-gray-700"
-            placeholder="URL"
-          />
-        </div>
-      </div>
-    </div>
-  </Modal>
 </template>
 
 <script setup lang="ts">
-import Modal from '@/modules/common/components/Modal.vue';
 import { ref } from 'vue';
+import CreateLinkModal from '../modals/CreateLinkModal.vue';
 
-const isModalOpen = ref(false)
+const isModalOpen = ref(false);
+
 </script>
-
-<style scoped>
-.text-magenta-500 { color: #ff00ff; }
-.bg-magenta-500 { background-color: #ff00ff; }
-.border-magenta-500 { border-color: #ff00ff; }
-
-/* Para que el input parezca de consola */
-input::placeholder {
-  color: #374151;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-}
-</style>
